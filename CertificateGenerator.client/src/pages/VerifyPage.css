@@ -1,0 +1,58 @@
+.verify-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background: var(--bg-primary);
+}
+
+.verify-card {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.verify-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+}
+
+.verify-card h1 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.verify-card .subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+}
+
+.verify-details {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.verify-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-default);
+}
+
+.verify-row:last-child {
+    border-bottom: none;
+}
+
+.verify-row .label {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.verify-row .value {
+    font-weight: 600;
+    font-size: 0.9rem;
+}

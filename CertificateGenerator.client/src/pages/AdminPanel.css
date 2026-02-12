@@ -1,0 +1,68 @@
+.admin-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border-default);
+    padding-bottom: 0;
+}
+
+.admin-tab {
+    padding: 10px 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all var(--transition-fast);
+    font-family: var(--font-family);
+}
+
+.admin-tab.active {
+    color: var(--primary-light);
+    border-bottom-color: var(--primary);
+}
+
+.admin-tab:hover:not(.active) {
+    color: var(--text-primary);
+}
+
+.admin-section {
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.create-user-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.create-user-form .full-width {
+    grid-column: 1 / -1;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 8px;
+}
+
+@media (max-width: 768px) {
+    .create-user-form {
+        grid-template-columns: 1fr;
+    }
+}
