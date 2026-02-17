@@ -130,15 +130,15 @@ export default function CertificateGeneratorPage() {
                         </div>
                     </div>
 
-                    <button type="submit" className="btn btn-primary btn-lg" disabled={loading} style={{ width: '100%' }}>
-                        {loading ? <span className="spinner" /> : '📜 Generate Certificate'}
+                    <button type="submit" className="btn btn-green btn-lg" disabled={loading} style={{ width: '100%' }}>
+                        {loading ? <span className="spinner" /> : 'Generate Certificate'}
                     </button>
                 </form>
             </div>
 
             {result && (
                 <div className="card generator-result">
-                    <h3>✅ Certificate Generated Successfully!</h3>
+                    <h3>Certificate Generated Successfully!</h3>
                     <div className="cert-details">
                         <p><strong>Student:</strong> {result.certificate.student_name}</p>
                         <p><strong>Course:</strong> {result.certificate.course_name}</p>
@@ -149,8 +149,8 @@ export default function CertificateGeneratorPage() {
                         })}</p>
                     </div>
                     <div className="btn-group">
-                        <button onClick={handleDownload} className="btn btn-primary">
-                            📥 Download PDF
+                        <button onClick={handleDownload} className="btn btn-download">
+                            Download PDF
                         </button>
                         <a
                             href={`/verify/${result.certificate.verification_code}`}
@@ -158,7 +158,7 @@ export default function CertificateGeneratorPage() {
                             rel="noopener noreferrer"
                             className="btn btn-secondary"
                         >
-                            🔗 Verification Link
+                            Verification Link
                         </a>
                     </div>
                 </div>

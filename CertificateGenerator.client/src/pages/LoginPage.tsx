@@ -35,53 +35,45 @@ export default function LoginPage() {
 
     return (
         <div className="login-page">
-            <div className="login-branding">
-                <h1>📜 Sarvarth</h1>
-                <p>Digital Certificate Generation & Verification System</p>
-            </div>
-
-            <div className="login-card-wrapper">
-                <div className="login-card">
-                    <h2>Welcome back</h2>
-                    <p className="subtitle">Sign in to your account to continue</p>
-
-                    <form className="login-form" onSubmit={handleSubmit}>
-                        {error && <div className="login-error">{error}</div>}
-
-                        <div className="input-group">
-                            <label htmlFor="email">Email</label>
-                            <input
-                                id="email"
-                                type="email"
-                                className="input"
-                                placeholder="Enter your email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                autoFocus
-                            />
-                        </div>
-
-                        <div className="input-group">
-                            <label htmlFor="password">Password</label>
-                            <input
-                                id="password"
-                                type="password"
-                                className="input"
-                                placeholder="Enter your password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
-
-                        <button
-                            type="submit"
-                            className="btn btn-primary btn-lg"
-                            disabled={loading || !email || !password}
-                        >
-                            {loading ? <span className="spinner" /> : 'Sign In'}
-                        </button>
-                    </form>
+            <div className="login-container">
+                <div className="login-header">
+                    <img src="/assets/sarvarth-logo.jpg" alt="Sarvarth" className="login-logo" />
                 </div>
+
+                <form className="login-form" onSubmit={handleSubmit}>
+                    {error && <div className="login-error">{error}</div>}
+
+                    <div className="input-row">
+                        <input
+                            id="email"
+                            type="email"
+                            className="input-minimal"
+                            placeholder="Username"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            autoFocus
+                        />
+                    </div>
+
+                    <div className="input-row">
+                        <input
+                            id="password"
+                            type="password"
+                            className="input-minimal"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="btn-login-custom"
+                        disabled={loading || !email || !password}
+                    >
+                        {loading ? <span className="spinner" /> : 'Login'}
+                    </button>
+                </form>
             </div>
         </div>
     );

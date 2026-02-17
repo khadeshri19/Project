@@ -4,42 +4,42 @@
 
 :root {
   /* Color Palette */
-  --primary: #6366f1;
-  --primary-light: #818cf8;
-  --primary-dark: #4f46e5;
-  --primary-glow: rgba(99, 102, 241, 0.15);
+  --primary: #f95853;
+  --primary-light: #f5615c;
+  --primary-dark: #f95853;
+  --primary-glow: #f95853;
 
-  --accent: #06b6d4;
-  --accent-light: #22d3ee;
+  --accent: #0891b2;
+  --accent-light: #06b6d4;
 
-  --success: #10b981;
-  --success-light: #34d399;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --danger-light: #f87171;
+  --success: #059669;
+  --success-light: #10b981;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --danger-light: #ef4444;
 
-  /* Background & Surface */
-  --bg-primary: #0f0f1a;
-  --bg-secondary: #1a1a2e;
-  --bg-card: #16162a;
-  --bg-elevated: #1e1e36;
-  --bg-input: #12122280;
+  /* Background & Surface — LIGHT */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-elevated: #f1f5f9;
+  --bg-input: #ffffff;
 
-  /* Text */
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-inverse: #0f172a;
+  /* Text — DARK on LIGHT */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --text-inverse: #f8fafc;
 
   /* Borders */
-  --border-default: rgba(148, 163, 184, 0.12);
-  --border-hover: rgba(148, 163, 184, 0.25);
+  --border-default: rgba(15, 23, 42, 0.08);
+  --border-hover: rgba(15, 23, 42, 0.16);
   --border-focus: var(--primary);
 
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.6);
+  /* Shadows — lighter for light theme */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
   --shadow-glow: 0 0 20px var(--primary-glow);
 
   /* Radii */
@@ -54,11 +54,13 @@
   --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Font */
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family:  sans-serif;
 }
 
 /* ---- Reset ---- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -120,7 +122,7 @@ a:hover {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+  
   opacity: 0;
   transition: opacity var(--transition-fast);
 }
@@ -161,6 +163,22 @@ a:hover {
   background: var(--bg-card);
 }
 
+.btn-create{
+  background: #726767;
+  color:rgb(255, 255, 255);
+  
+}
+
+.btn-green{
+  background-color: #059669;
+  color: #ffffff;
+}
+
+.btn-download{
+  background-color: rgb(67, 113, 211);
+  color: #ffffff;
+}
+
 .btn-danger {
   background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
   color: white;
@@ -168,6 +186,12 @@ a:hover {
 
 .btn-danger:hover:not(:disabled) {
   box-shadow: var(--shadow-md), 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+.btn-enable{
+  background:#059669;
+  color: white;
+
 }
 
 .btn-sm {
@@ -196,7 +220,7 @@ a:hover {
 .input {
   padding: 10px 14px;
   background: var(--bg-input);
-  border: 1px solid var(--border-default);
+  border: 0.5px solid var(--border-default);
   border-radius: var(--radius-md);
   color: var(--text-primary);
   font-family: var(--font-family);
@@ -206,8 +230,8 @@ a:hover {
 }
 
 .input:focus {
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px var(--primary-glow);
+  border-color: #475569;
+  
 }
 
 .input::placeholder {
@@ -216,16 +240,17 @@ a:hover {
 
 /* Cards */
 .card {
-  background: var(--bg-card);
+  background: #ffffff;
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   padding: 24px;
   transition: all var(--transition-normal);
+  box-shadow: var(--shadow-md);
 }
 
 .card:hover {
   border-color: var(--border-hover);
-  box-shadow: var(--shadow-md);
+  
 }
 
 /* Badges */
@@ -241,18 +266,18 @@ a:hover {
 }
 
 .badge-success {
-  background: rgba(16, 185, 129, 0.15);
-  color: var(--success-light);
+  background: rgba(5, 150, 105, 0.1);
+  color: var(--success);
 }
 
 .badge-danger {
-  background: rgba(239, 68, 68, 0.15);
-  color: var(--danger-light);
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--danger);
 }
 
 .badge-primary {
-  background: var(--primary-glow);
-  color: var(--primary-light);
+  background: rgba(233, 44, 44, 0.233);
+  color: rgba(233, 44, 44, 0.979);
 }
 
 /* Page Layout */
@@ -348,6 +373,7 @@ tr:hover td {
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -358,14 +384,16 @@ tr:hover td {
 .spinner {
   width: 20px;
   height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
+  border: 2px solid rgba(99, 102, 241, 0.25);
+  border-top-color: var(--primary);
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Responsive */

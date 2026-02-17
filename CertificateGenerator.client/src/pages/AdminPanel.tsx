@@ -115,141 +115,189 @@ export default function AdminPanel() {
     }
 
     return (
-        <div className="page">
-            <div className="page-header">
-                <h1>Admin Panel</h1>
-                <p>Manage users and certificates</p>
-            </div>
-
-            {toast && <div className={`toast toast-${toast.type}`}>{toast.message}</div>}
-
-            <div className="admin-tabs">
-                <button className={`admin-tab ${activeTab === 'users' ? 'active' : ''}`} onClick={() => setActiveTab('users')}>
-                    👥 Users ({users.length})
-                </button>
-                <button className={`admin-tab ${activeTab === 'certificates' ? 'active' : ''}`} onClick={() => setActiveTab('certificates')}>
-                    📜 Certificates ({certificates.length})
-                </button>
-            </div>
-
-            {activeTab === 'users' && (
-                <div className="admin-section">
-                    {/* Create User Form */}
-                    <div className="card" style={{ marginBottom: '24px' }}>
-                        <h3 style={{ marginBottom: '16px', fontSize: '1rem' }}>Create New User</h3>
-                        <form onSubmit={handleCreateUser}>
-                            <div className="create-user-form">
-                                <div className="input-group">
-                                    <label>Name</label>
-                                    <input className="input" placeholder="Full name" value={newName} onChange={(e) => setNewName(e.target.value)} />
-                                </div>
-                                <div className="input-group">
-                                    <label>Email</label>
-                                    <input className="input" type="email" placeholder="Email address" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
-                                </div>
-                                <div className="input-group">
-                                    <label>Password</label>
-                                    <input className="input" type="password" placeholder="Minimum 6 characters" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
-                                </div>
-                                <div className="input-group">
-                                    <label>Role</label>
-                                    <select className="input" value={newRole} onChange={(e) => setNewRole(e.target.value)}>
-                                        <option value="user">User</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button type="submit" className="btn btn-primary" disabled={creating || !newName || !newEmail || !newPassword}>
-                                {creating ? 'Creating...' : '➕ Create User'}
-                            </button>
-                        </form>
-                    </div>
-
-                    {/* Users Table */}
-                    <div className="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Joined</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {users.map((user) => (
-                                    <tr key={user.id}>
-                                        <td>{user.name}</td>
-                                        <td>{user.email}</td>
-                                        <td><span className={`badge ${user.role === 'admin' ? 'badge-primary' : 'badge-success'}`}>{user.role}</span></td>
-                                        <td>{new Date(user.created_at).toLocaleDateString()}</td>
-                                        <td>
-                                            <div className="admin-actions">
-                                                <button className="btn btn-danger btn-sm" onClick={() => handleDeleteUser(user.id, user.name)}>
-                                                    🗑️ Delete
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            )}
-
-            {activeTab === 'certificates' && (
-                <div className="admin-section">
-                    <div className="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Student</th>
-                                    <th>Course</th>
-                                    <th>Issued By</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {certificates.map((cert) => (
-                                    <tr key={cert.id}>
-                                        <td>{cert.student_name}</td>
-                                        <td>{cert.course_name}</td>
-                                        <td>{cert.issued_by}</td>
-                                        <td>
-                                            <span className={`badge ${cert.status === 'active' ? 'badge-success' : 'badge-danger'}`}>
-                                                {cert.status}
-                                            </span>
-                                        </td>
-                                        <td>{new Date(cert.created_at).toLocaleDateString()}</td>
-                                        <td>
-                                            <div className="admin-actions">
-                                                <button
-                                                    className={`btn btn-sm ${cert.status === 'active' ? 'btn-danger' : 'btn-primary'}`}
-                                                    onClick={() => handleToggleCertStatus(cert.id, cert.status)}
-                                                >
-                                                    {cert.status === 'active' ? '🚫 Disable' : '✅ Enable'}
-                                                </button>
-                                                <a
-                                                    href={`/verify/${cert.verification_code}`}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="btn btn-secondary btn-sm"
-                                                >
-                                                    🔗 Verify
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            )}
+      <div className="page">
+        <div className="page-header">
+          <h1>Admin Panel</h1>
+          
         </div>
+
+        {toast && (
+          <div className={`toast toast-${toast.type}`}>{toast.message}</div>
+        )}
+
+        <div className="admin-tabs">
+          <button
+            className={`admin-tab ${activeTab === "users" ? "active" : ""}`}
+            onClick={() => setActiveTab("users")}
+          >
+            Users ({users.length})
+          </button>
+          <button
+            className={`admin-tab ${activeTab === "certificates" ? "active" : ""}`}
+            onClick={() => setActiveTab("certificates")}
+          >
+            Certificates ({certificates.length})
+          </button>
+        </div>
+
+        {activeTab === "users" && (
+          <div className="admin-section">
+            {/* Create User Form */}
+            <div className="card" style={{ marginBottom: "24px" }}>
+              <h3 style={{ marginBottom: "16px", fontSize: "1rem" }}>
+                Create New User
+              </h3>
+              <form onSubmit={handleCreateUser}>
+                <div className="create-user-form">
+                  <div className="input-group">
+                    <label>Name</label>
+                    <input
+                      className="input"
+                      placeholder="Full name"
+                      value={newName}
+                      onChange={(e) => setNewName(e.target.value)}
+                    />
+                  </div>
+                  <div className="input-group">
+                    <label>Email</label>
+                    <input
+                      className="input"
+                      type="email"
+                      placeholder="Email address"
+                      value={newEmail}
+                      onChange={(e) => setNewEmail(e.target.value)}
+                    />
+                  </div>
+                  <div className="input-group">
+                    <label>Password</label>
+                    <input
+                      className="input"
+                      type="password"
+                      placeholder="Minimum 6 characters"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                    />
+                  </div>
+                  <div className="input-group">
+                    <label>Role</label>
+                    <select
+                      className="input"
+                      value={newRole}
+                      onChange={(e) => setNewRole(e.target.value)}
+                    >
+                      <option value="user">User</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-create"
+                  disabled={creating || !newName || !newEmail || !newPassword}
+                >
+                  {creating ? "Creating..." : "Create User"}
+                </button>
+              </form>
+            </div>
+
+            {/* Users Table */}
+            <div className="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Joined</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map((user) => (
+                    <tr key={user.id}>
+                      <td>{user.name}</td>
+                      <td>{user.email}</td>
+                      <td>
+                        <span
+                          className={`badge ${user.role === "admin" ? "badge-primary" : "badge-success"}`}
+                        >
+                          {user.role}
+                        </span>
+                      </td>
+                      <td>{new Date(user.created_at).toLocaleDateString()}</td>
+                      <td>
+                        <div className="admin-actions">
+                          <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => handleDeleteUser(user.id, user.name)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "certificates" && (
+          <div className="admin-section">
+            <div className="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Course</th>
+                    <th>Issued By</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {certificates.map((cert) => (
+                    <tr key={cert.id}>
+                      <td>{cert.student_name}</td>
+                      <td>{cert.course_name}</td>
+                      <td>{cert.issued_by}</td>
+                      <td>
+                        <span
+                          className={`badge ${cert.status === "active" ? "badge-success" : "badge-danger"}`}
+                        >
+                          {cert.status}
+                        </span>
+                      </td>
+                      <td>{new Date(cert.created_at).toLocaleDateString()}</td>
+                      <td>
+                        <div className="admin-actions">
+                          <button
+                            className={`btn btn-sm  ${cert.status === "active" ? "badge-danger" : "badge-success"}`}
+                            onClick={() =>
+                              handleToggleCertStatus(cert.id, cert.status)
+                            }
+                          >
+                            {cert.status === "active" ? " Disable" : "Enable"}
+                          </button>
+                          <a
+                            href={`/verify/${cert.verification_code}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-secondary btn-sm"
+                          >
+                            Verify
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </div>
     );
 }
