@@ -39,11 +39,11 @@ app.get('/api/health', (_req, res) => {
 initDb()
     .then(() => {
         app.listen(PORT, () => {
-            console.log(`✅ Server running on http://localhost:${PORT}`);
+            console.log(`Server running on http://localhost:${PORT}`);
         });
     })
     .catch((err) => {
-        console.error('❌ Failed to initialize database:', err);
+        console.error('Failed to initialize database:', err);
         process.exit(1);
     });
 

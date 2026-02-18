@@ -46,7 +46,7 @@ router.post('/generate', authMiddleware, async (req: AuthRequest, res: Response)
                 console.log(`  -> Field: ${f.field_type} at (${f.position_x}, ${f.position_y}) size=${f.font_size} color=${f.font_color} font=${f.font_family}`);
             });
         } else {
-            console.warn('[CERT] ⚠️ WARNING: No fields found for this template! Did you save the field layout?');
+            console.warn('[CERT] WARNING: No fields found for this template! Did you save the field layout?');
         }
 
         // Generate short verification code (segment 1 of UUID)

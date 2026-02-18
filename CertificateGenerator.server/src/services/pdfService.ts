@@ -82,7 +82,7 @@ export async function generateCertificatePdf(
 
   if (fields.length === 0) {
     console.warn(
-      "[PDF] ⚠️ WARNING: No fields found! The PDF will only have the background image.",
+      "[PDF] WARNING: No fields found! The PDF will only have the background image.",
     );
   }
 
@@ -97,7 +97,7 @@ export async function generateCertificatePdf(
   console.log(`[PDF] Resolved template path: ${templateImagePath}`);
 
   if (!fs.existsSync(templateImagePath)) {
-    console.error(`[PDF] ❌ Template image NOT FOUND: ${templateImagePath}`);
+    console.error(`[PDF] Template image NOT FOUND: ${templateImagePath}`);
     throw new Error(`Template image not found: ${templateImagePath}`);
   }
 
@@ -191,7 +191,7 @@ export async function generateCertificatePdf(
     const text = getFieldValue(field.field_type, certificate);
 
     if (!text) {
-      console.warn(`[PDF] ⚠️ Skipping empty field: "${field.field_type}"`);
+      console.warn(`[PDF] Skipping empty field: "${field.field_type}"`);
       continue;
     }
 
@@ -209,7 +209,7 @@ export async function generateCertificatePdf(
     // Flip Y: CSS has origin at top-left, PDF has origin at bottom-left
     const pdfY = pdfHeight - topDownY - scaledFontSize;
 
-    console.log(`[PDF] ✅ "${text}"`);
+    console.log(`[PDF] "${text}"`);
     console.log(
       `[PDF]    display: (${field.position_x.toFixed(1)}, ${field.position_y.toFixed(1)}) fontSize=${fontSize}`,
     );
@@ -220,7 +220,7 @@ export async function generateCertificatePdf(
     // Safety check: skip fields that would be off-page
     if (pdfX < 0 || pdfX > pdfWidth || pdfY < -50 || pdfY > pdfHeight + 50) {
       console.error(
-        `[PDF] ❌ SKIPPING "${text}" — off-page at pdf(${pdfX.toFixed(0)}, ${pdfY.toFixed(0)})`,
+        `[PDF] SKIPPING "${text}" — off-page at pdf(${pdfX.toFixed(0)}, ${pdfY.toFixed(0)})`,
       );
       continue;
     }
@@ -245,7 +245,7 @@ export async function generateCertificatePdf(
   }
 
   fs.writeFileSync(pdfFullPath, pdfBytes);
-  console.log(`[PDF] ✅ PDF saved: ${pdfFullPath}`);
+  console.log(`[PDF] PDF saved: ${pdfFullPath}`);
   console.log(`[PDF] ===== PDF Generation Complete =====\n`);
 
   return `/generated/${pdfFilename}`;
