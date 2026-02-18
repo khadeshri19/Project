@@ -61,19 +61,18 @@
 .input-minimal:focus {
     outline: none;
     background: #f1f5f9;
-    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
-    /* Subtle red glow */
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.621);
 }
 
 .btn-login-custom {
     margin-top: 8px;
     width: 100%;
     padding: 14px;
-    background: #ef4444;
+    background: #dc2626;
     /* Red/Coral color */
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 3px;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;

@@ -70,7 +70,7 @@ export async function initDb(): Promise<void> {
             END $$;
         `);
 
-        console.log('✅ Database tables initialized and verified');
+        console.log('Database tables initialized and verified');
 
         // Seed admin user if not exists
         const adminCheck = await pool.query(
@@ -85,7 +85,7 @@ export async function initDb(): Promise<void> {
          VALUES ($1, $2, $3, $4)`,
                 ['Admin', 'admin@sarvarth.com', hashedPassword, 'admin']
             );
-            console.log('✅ Admin user seeded (admin@sarvarth.com / admin123)');
+            console.log('Admin user seeded (admin@sarvarth.com / admin123)');
         }
 
         // Ensure upload and generated directories exist
@@ -95,7 +95,7 @@ export async function initDb(): Promise<void> {
         if (!fs.existsSync(generatedDir)) fs.mkdirSync(generatedDir, { recursive: true });
 
     } catch (error) {
-        console.error('❌ Database initialization failed:', error);
+        console.error('Database initialization failed:', error);
         throw error;
     }
 }
